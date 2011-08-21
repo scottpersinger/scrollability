@@ -8,10 +8,12 @@ var kLockThreshold = 10;
 var kTouchMultiplier = 1;
 
 // Maximum velocity for motion after user releases finger
-var kMaxVelocity = 720 / (window.devicePixelRatio||1);
+//var kMaxVelocity = 720 / (window.devicePixelRatio||1);
+var kMaxVelocity = 250 / (window.devicePixelRatio||1); //scottp
 
 // Rate of deceleration after user releases finger
-var kDecelRate = 350;
+//var kDecelRate = 350;
+var kDecelRate = 650; //scottp
 
 // Percentage of the page which content can be overscrolled before it must bounce back
 var kBounceLimit = 0.5;
@@ -50,6 +52,7 @@ var scrollers = {
 };
 
 window.scrollability = {
+    version: 'scottp-0.7',
     globalScrolling: false,
     scrollers: scrollers,
     useOnScrollEvt: false,
@@ -124,6 +127,7 @@ function onScroll(event) {
 
 function onOrientationChange(event) {
     justChangedOrientation = true;
+    window.scrollTo(0, 1); // scottp - I added this to force show of nav bar on orientation change
 }
 
 function onTouchStart(event) {
@@ -733,3 +737,18 @@ document.addEventListener('orientationchange', onOrientationChange, false);
 window.addEventListener('load', onLoad, false);
 
 })();
+
+// convience - scottp
+scrollability.scrollToTop = function(elt) {
+    if (elt) {
+      scrollability.scrollTo(elt, 0, 0);
+    } else {
+      var scrollables = document.getElementsByClassName('scrollable');
+      if (scrollables.length) {
+          var scrollable = scrollables[0];
+          if (scrollable.className.indexOf('vertical') != -1) {
+              scrollability.scrollTo(scrollable, 0, 0, kScrollToTopTime);
+          }
+      }
+    }
+}

@@ -1,3 +1,18 @@
+Modifications
+=============
+Thanks to https://github.com/jimmybyrum for pull-to-refresh:
+
+> Building off of endtwist's changes [1], I've added pull down to refresh.
+>
+> An element with the class "pull-down-to-refresh" will be hidden above the "top" of the list and will fire pullingDown, pulledDown and
+> pullDownCancel back to the list.
+
+> An elements with the class "pull-up-to-refresh" will be hidden below the "bottom" of the list and will fire pullingUp, pulledUp and pullUpCancel back to the list.
+
+> In regard to endtwist's scroll event, I've added a boolean called useOnScrollEvt which defaults to false so that the event is not fired if it's not needed.
+
+Also added a few fixes of my own, and a _scrollability.version_ field which you can check.
+
 scrollability
 =============
 
